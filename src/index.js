@@ -10,7 +10,7 @@ class SlackService {
             return;
         }
         this.webhook = new IncomingWebhook(this.config.webhook);
-        this.message = this.config.message || "Running Tests Report";
+        this.message = this.config.message || "The following scenarios failed during smoketest " + testEnvironment;
         this.attachments = [
             {
                 pretext: `*${this.message}*`,
@@ -30,7 +30,7 @@ class SlackService {
         }
     }
 
-    async after() {
+    onComplete() {
         await this.webhook.send({
             attachments: this.attachments
         });
