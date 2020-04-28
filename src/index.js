@@ -31,7 +31,7 @@ class SlackService {
     }
 
     onComplete() {
-        await this.webhook.send({
+        this.webhook.send({
             attachments: this.attachments
         });
     }
